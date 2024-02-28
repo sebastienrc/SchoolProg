@@ -1,15 +1,8 @@
 #pragma once
-
-// Sebastien Rojas Castillo - 1DAE15
-
-class Time;
-class Square;
-class Container;
-
-#include <vector>
-
-
 #include "BaseGame.h"
+
+class PowerUpManager;
+
 class Game : public BaseGame
 {
 public:
@@ -32,20 +25,12 @@ public:
 	void ProcessMouseUpEvent( const SDL_MouseButtonEvent& e ) override;
 
 private:
+	PowerUpManager* m_TestPowerUpManager;
+	Rectf m_MouseCursor;
+
 
 	// FUNCTIONS
 	void Initialize();
 	void Cleanup( );
 	void ClearBackground( ) const;
-
-
-	void TestSquares();
-	void CompareTimes(const Time* t1, const Time* t2);
-	void PrintInstancesCntr(const std::string& message);
-	void TestContainer();
-	void PrintContainer(const Container* c);
-	
-	std::vector <Square*> m_Squares;
-	std::vector	<Time*> m_Time;
-
 };

@@ -3,6 +3,10 @@
 // #include .....
 // ....
 
+// Sebastien Rojas Castillo - 1DAE15
+
+
+#include "pch.h"
 #include "Texture.h"
 #include "Smiley.h"
 #include "utils.h"
@@ -20,9 +24,9 @@ int Smiley::m_InstanceCounter{ 0 };
 Smiley::Smiley( const Point2f& position ):
 	m_Position{position}
 ,	m_Velocity{float(rand() % 61 + 60),float(rand() % 61 + 60)}
-,	m_IsHighest{}
-,	m_IsSleeping{}
-,	m_IsInSafeArea{}
+,	m_IsHighest{false}
+,	m_IsSleeping{false}
+,	m_IsInSafeArea{true}
 {
 	int posOrNegX{ rand() % 3 - 1 };
 	int posOrNegY{ rand() % 3 - 1 };
@@ -41,6 +45,8 @@ Smiley::Smiley( const Point2f& position ):
 // Deletes the Texture object when this is the last Smiley that is being destroyed.
 Smiley::~Smiley( )
 {
+	m_InstanceCounter--;
+	
 
 	if (m_InstanceCounter == 0)
 	{
@@ -58,14 +64,14 @@ Smiley::~Smiley( )
 // - If none of the above conditions is met, the neutral smiley should be drawn.
 void Smiley::Draw( )
 {
-	if (m_IsHighest)
+	if (m_IsSleeping)
+		m_pSmileyTexture->Draw(m_Position, Rectf{ (m_pSmileyTexture->GetWidth() / 4) * 3,0,(m_pSmileyTexture->GetWidth() / 4), m_pSmileyTexture->GetHeight() });
+	else if (m_IsHighest)
 		m_pSmileyTexture->Draw(m_Position, Rectf{ 0,0,m_pSmileyTexture->GetWidth() / 4, m_pSmileyTexture->GetHeight() });
 	else if(m_IsInSafeArea)
 		m_pSmileyTexture->Draw(m_Position, Rectf{ (m_pSmileyTexture->GetWidth() / 4),0,(m_pSmileyTexture->GetWidth() / 4), m_pSmileyTexture->GetHeight() });
-	else if(m_IsSleeping)
-		m_pSmileyTexture->Draw(m_Position, Rectf{ (m_pSmileyTexture->GetWidth() / 4) * 2,0,(m_pSmileyTexture->GetWidth() / 4), m_pSmileyTexture->GetHeight() });
 	else
-		m_pSmileyTexture->Draw(m_Position, Rectf{ (m_pSmileyTexture->GetWidth() / 4) * 3,0,(m_pSmileyTexture->GetWidth() / 4), m_pSmileyTexture->GetHeight() });
+		m_pSmileyTexture->Draw(m_Position, Rectf{ (m_pSmileyTexture->GetWidth() / 4) * 2,0,(m_pSmileyTexture->GetWidth() / 4), m_pSmileyTexture->GetHeight() });
 }
 
 // Update
@@ -74,11 +80,22 @@ void Smiley::Draw( )
 // - Checks whether at this new position, it is located in the safe area and updates m_IsInSafeArea accordingly.
 void Smiley::Update( float elapsedSec, const Rectf& boundingRect, const Rectf& safeRect )
 {
-	if (!m_IsSleeping)
+
+
+
+
+		if (!m_IsSleeping)
 	{
+		if (!utils::IsPointInRect(m_Position, boundingRect) ||
+			!utils::IsPointInRect(Point2f{m_Position.x + m_pSmileyTexture->GetWidth() / 4 , m_Position.y + m_pSmileyTexture->GetHeight()},boundingRect))
+				m_Velocity = -m_Velocity;
 
 		m_Position.x += m_Velocity.x * elapsedSec;
 		m_Position.y += m_Velocity.y * elapsedSec;
+		
+		m_IsInSafeArea = IsInSafeArea(safeRect);
+	
+		
 
  	}
 
@@ -117,7 +134,7 @@ Point2f Smiley::GetPosition( )
 // Setter of the m_IsHighest data member
 void Smiley::SetHighest( bool isHighest )
 {
-	m_IsHighest = true;
+	m_IsHighest = isHighest;
 
 }
 
@@ -141,12 +158,9 @@ void Smiley::DecreaseSpeed( )
 // Returns true when the smiley is completely inside the safe area as indicated by safeRect
 bool Smiley::IsInSafeArea( const Rectf& safeRect ) const
 {
-	Rectf dstRect { m_Position.x,m_Position.y,m_pSmileyTexture->GetWidth() / 4, m_pSmileyTexture->GetHeight() };
+	bool isSafe{utils::IsPointInRect(m_Position, safeRect) &&
+			utils::IsPointInRect(Point2f{m_Position.x + m_pSmileyTexture->GetWidth() / 4 , m_Position.y + m_pSmileyTexture->GetHeight()},safeRect) };
 
-	utils::IsOverlapping(dstRect, safeRect);
-
-	return true; // change this later
+	return isSafe; // change this later
 }
-
-
 

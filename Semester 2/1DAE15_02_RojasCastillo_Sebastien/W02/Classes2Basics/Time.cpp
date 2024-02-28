@@ -2,6 +2,9 @@
 #include <iostream>
 #include <iomanip>
 #include "Time.h"
+// Sebastien Rojas Castillo - 1DAE15
+
+
 int Time::m_Instances{ 0 };
 
 Time::Time( int seconds ):m_Seconds{seconds}

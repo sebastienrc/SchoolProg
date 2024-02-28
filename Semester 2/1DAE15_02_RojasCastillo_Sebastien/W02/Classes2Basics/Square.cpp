@@ -2,6 +2,8 @@
 #include "Square.h"
 #include <iostream>
 #include <iomanip>
+// Sebastien Rojas Castillo - 1DAE15
+
 
 Square::Square(float size)
 	: m_Size{ size }

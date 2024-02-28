@@ -1,6 +1,9 @@
 // The query type (const) methods are not indicated as such, 
 // but we expect you to indicate these using const.
 
+// Sebastien Rojas Castillo - 1DAE15
+
+
 // -- Smiley.h file --
 #pragma once
 #include "Vector2f.h"

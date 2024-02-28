@@ -1,4 +1,7 @@
 #pragma once
+
+// Sebastien Rojas Castillo - 1DAE15
+
 class Container
 {
 public:
@@ -17,7 +20,7 @@ private:
 	int* m_pDynArray;
 	
 	
-	void Reserve(int newCapacity);
+	void Reserve(int newCapacity);	
 
 
 

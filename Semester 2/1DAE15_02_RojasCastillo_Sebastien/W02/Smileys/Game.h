@@ -1,4 +1,11 @@
 #pragma once
+
+#include "vector"
+class Smiley;
+// Sebastien Rojas Castillo - 1DAE15
+
+
+
 #include "BaseGame.h"
 class Game : public BaseGame
 {
@@ -27,4 +34,24 @@ private:
 	void Initialize();
 	void Cleanup( );
 	void ClearBackground( ) const;
+
+	std::vector <Smiley*> m_Smileys;
+	Rectf m_WindowSize;
+	Rectf m_SafeRect;
+	float m_HigestSmileyY;
+
+
+
+	void CreateSmileys();
+	void DrawSmileys() const;
+	void DeleteSmileys();
+	void DeleteSleepers();
+
+	void UpdateSmileys(float elapsedSec);
+	void ClickSmiley(const Point2f& pos);
+
+	void IncreaseSmileySpeed();
+	void DecreaseSmileySpeed();
+	
+	void DetermineHighestSmiley();
 };

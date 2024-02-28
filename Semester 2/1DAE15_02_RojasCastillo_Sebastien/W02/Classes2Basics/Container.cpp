@@ -3,6 +3,8 @@
 
 #include "iostream"
 
+// Sebastien Rojas Castillo - 1DAE15
+
 
 Container::Container(int capacity):
 	m_Capacity	{capacity}

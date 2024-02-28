@@ -2,6 +2,8 @@
 #include <ctime>
 #include "Game.h"
 
+// Sebastien Rojas Castillo - 1DAE15
+
 
 void StartHeapControl();
 void DumpMemoryLeaks();
@@ -12,7 +14,8 @@ int SDL_main(int argv, char** args)
 
 	StartHeapControl();
 
-	Game* pGame{ new Game{ Window{ "Project name - Name, first name - 1DAEXX", 846.f , 500.f } } };
+
+	Game* pGame{ new Game{ Window{ "Smileys - Rojas Castillo, Sebastien- 1DAE15", 1400.f , 600.f } } };
 	pGame->Run();
 	delete pGame;
 

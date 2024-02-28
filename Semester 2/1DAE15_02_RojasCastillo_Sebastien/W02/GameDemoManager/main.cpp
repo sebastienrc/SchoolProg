@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <ctime>
 #include "Game.h"
-// Sebastien Rojas Castillo - 1DAE15
+
 
 void StartHeapControl();
 void DumpMemoryLeaks();
