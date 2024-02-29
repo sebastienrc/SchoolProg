@@ -1,4 +1,7 @@
 #pragma once
+// Sebastien Rojas Castillo - 1DAE15
+
+
 class Enemy
 {
 public:

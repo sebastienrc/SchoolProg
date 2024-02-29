@@ -4,6 +4,9 @@
 #include "utils.h"
 #include <iostream>
 
+
+// Sebastien Rojas Castillo - 1DAE15
+
 Game::Game( const Window& window ) 
 	:BaseGame{ window }
 ,	m_MouseCursor{0,0,10.f,10.f}

@@ -2,7 +2,11 @@
 #include "BaseGame.h"
 #include "vector"
 
+// Sebastien Rojas Castillo - 1DAE15
+
+
 class Enemy;
+class Avatar;
 
 class Game : public BaseGame
 {
@@ -29,6 +33,7 @@ private:
 
 	std::vector <Enemy*> m_pEnemies;
 
+	Avatar* m_pAvatar;
 
 	// FUNCTIONS
 	void Initialize();
@@ -40,4 +45,9 @@ private:
 	void DrawEnemies() const;
 	void DeleteEnemies();
 	void DoHitEnemies(const Rectf& other);
+
+	void InitializeAvatar();
+	void DeleteAvatar();
+	void DrawAvatar() const;
+	void UpdateAvatar(float elapsedSec,std::vector<Enemy*>& enemies);
 };

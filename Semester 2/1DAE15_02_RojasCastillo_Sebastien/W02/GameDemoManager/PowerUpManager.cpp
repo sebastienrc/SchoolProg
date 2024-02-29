@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "PowerUpManager.h"
 
-
+// Sebastien Rojas Castillo - 1DAE15
 
 PowerUpManager::PowerUpManager():
 m_PowerUps {}

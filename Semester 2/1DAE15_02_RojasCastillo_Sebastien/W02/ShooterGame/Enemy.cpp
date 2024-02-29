@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Enemy.h"
 #include "utils.h"
-
+// Sebastien Rojas Castillo - 1DAE15
 
 Enemy::Enemy(const Point2f& center, float width, float height):
 	m_Center	{center}
@@ -26,8 +26,8 @@ Rectf Enemy::GetBounds() const
 void Enemy::Draw() const
 {
 	utils::SetColor(Color4f{ 1,0,0,1 });
-	if(!m_IsDead)
-	utils::DrawRect(GetBounds());
+	if (!m_IsDead)
+		utils::DrawRect(GetBounds(), 3.f);
 
 }
 
@@ -45,11 +45,14 @@ void Enemy::SetDimentions(float width, float height)
 
 bool Enemy::DoHitTest(const Rectf& other)
 {
-	if (utils::IsOverlapping(GetBounds(), other))
-	{
-		m_IsDead = true;
-		return true;
+	if (!m_IsDead) {
+		if (utils::IsOverlapping(GetBounds(), other))
+		{
+			m_IsDead = true;
+			return true;
+		}
 	}
+
 	return false;
 }
 

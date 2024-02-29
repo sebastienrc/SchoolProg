@@ -4,6 +4,8 @@
 #include "Texture.h"
 #include "utils.h"
 
+// Sebastien Rojas Castillo - 1DAE15
+
 PowerUp::PowerUp(const Point2f& center, Type type)
 :	m_Type{type}
 ,	m_pTexture{nullptr}

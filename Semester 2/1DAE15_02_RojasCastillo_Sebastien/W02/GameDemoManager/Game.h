@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseGame.h"
 
+// Sebastien Rojas Castillo - 1DAE15
+
 class PowerUpManager;
 
 class Game : public BaseGame

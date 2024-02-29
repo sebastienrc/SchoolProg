@@ -1,7 +1,7 @@
 #pragma once
 #include "PowerUp.h"
 #include "vector"
-
+// Sebastien Rojas Castillo - 1DAE15
 
 class PowerUpManager
 {
